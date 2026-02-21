@@ -1,0 +1,25 @@
+==========================================
+   RAHUL MISHRA - PROFILE PHOTO ADDED ✓
+==========================================
+
+✅ Photo successfully added to the website!
+
+PHOTO LOCATION:
+---------------
+Folder: assets/
+File: rahulphot.jpg
+
+The photo is now live on the website and will display
+in the hero section next to Rahul Mishra's name.
+
+PHOTO DETAILS:
+--------------
+- Professional showroom photo
+- Blue blazer with ID card
+- Standing next to white Maruti car
+- Perfect for building customer trust!
+
+No further action needed - the photo will automatically
+load when you open index.html in a browser.
+
+==========================================
