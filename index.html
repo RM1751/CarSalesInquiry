@@ -104,8 +104,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 gradient-maruti rounded-lg flex items-center justify-center">
-                        <i class="fas fa-car text-white text-xl"></i>
+                    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-maruti-400 flex-shrink-0">
+                        <img src="assets/rahulphot.jpg" alt="Rahul Mishra" class="w-full h-full object-cover" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-car text-white text-xl\'></i>'; this.parentElement.classList.add('gradient-maruti', 'flex', 'items-center', 'justify-center');">
                     </div>
                     <div>
                         <h1 class="text-white font-bold text-xl">Rahul Mishra</h1>
@@ -170,7 +171,7 @@
                     </div>
                     
                     <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20buying%20a%20Maruti%20car.%20Can%20you%20help%20me%20with%20the%20best%20price%20and%20EMI%20options?" 
+                        <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
                            target="_blank"
                            class="pulse-ring gradient-maruti text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center">
                             <i class="fab fa-whatsapp text-2xl mr-3"></i>
@@ -273,18 +274,154 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Swift -->
+                <!-- Alto -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
                     <div class="h-48 bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-car text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Maruti Alto</h3>
+                                <p class="text-sm text-slate-500">Entry Hatchback</p>
+                            </div>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">Best Value</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-4 text-sm">
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 22-31 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-slate-500">Starting On-Road Price</p>
+                            <p class="text-2xl font-bold text-slate-800">₹4.5 Lakh*</p>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button onclick="openOfferModal('Alto')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                                Get Best Offer
+                            </button>
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
+                               target="_blank"
+                               class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- S-Presso -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                        <i class="fas fa-car-side text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Maruti S-Presso</h3>
+                                <p class="text-sm text-slate-500">Mini SUV</p>
+                            </div>
+                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">Trending</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-4 text-sm">
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 21-32 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-slate-500">Starting On-Road Price</p>
+                            <p class="text-2xl font-bold text-slate-800">₹5.2 Lakh*</p>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button onclick="openOfferModal('S-Presso')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                                Get Best Offer
+                            </button>
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
+                               target="_blank"
+                               class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WagonR -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
+                        <i class="fas fa-shuttle-van text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Maruti WagonR</h3>
+                                <p class="text-sm text-slate-500">Tall Boy Hatchback</p>
+                            </div>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">Family</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-4 text-sm">
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 24-34 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-slate-500">Starting On-Road Price</p>
+                            <p class="text-2xl font-bold text-slate-800">₹6.0 Lakh*</p>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button onclick="openOfferModal('WagonR')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                                Get Best Offer
+                            </button>
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
+                               target="_blank"
+                               class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Celerio -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-car text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Maruti Celerio</h3>
+                                <p class="text-sm text-slate-500">Premium Hatchback</p>
+                            </div>
+                            <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-semibold">Popular</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-4 text-sm">
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 26-35 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-slate-500">Starting On-Road Price</p>
+                            <p class="text-2xl font-bold text-slate-800">₹6.2 Lakh*</p>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button onclick="openOfferModal('Celerio')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                                Get Best Offer
+                            </button>
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
+                               target="_blank"
+                               class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swift -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center">
                         <i class="fas fa-car-side text-white text-7xl"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <div>
                                 <h3 class="text-xl font-bold text-slate-800">Maruti Swift</h3>
-                                <p class="text-sm text-slate-500">Hatchback</p>
+                                <p class="text-sm text-slate-500">Sporty Hatchback</p>
                             </div>
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">Best Seller</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">Best Seller</span>
                         </div>
                         <div class="flex items-center gap-4 mb-4 text-sm">
                             <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 22-32 km/l</span>
@@ -292,13 +429,47 @@
                         </div>
                         <div class="border-t pt-4">
                             <p class="text-sm text-slate-500">Starting On-Road Price</p>
-                            <p class="text-2xl font-bold text-slate-800">₹6.5 Lakh*</p>
+                            <p class="text-2xl font-bold text-slate-800">₹6.8 Lakh*</p>
                         </div>
                         <div class="mt-4 space-y-2">
                             <button onclick="openOfferModal('Swift')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
                                 Get Best Offer
                             </button>
-                            <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20Maruti%20Swift.%20Please%20share%20details." 
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
+                               target="_blank"
+                               class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i>Enquire Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dzire -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+                        <i class="fas fa-taxi text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Dzire</h3>
+                                <p class="text-sm text-slate-500">Premium Sedan</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">Premium</span>
+                        </div>
+                        <div class="flex items-center gap-4 mb-4 text-sm">
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 22-31 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-slate-500">Starting On-Road Price</p>
+                            <p class="text-2xl font-bold text-slate-800">₹7.5 Lakh*</p>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button onclick="openOfferModal('Dzire')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                                Get Best Offer
+                            </button>
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
                                target="_blank"
                                class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
                                 <i class="fab fa-whatsapp mr-2"></i>Enquire Now
@@ -309,16 +480,16 @@
 
                 <!-- Brezza -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                    <div class="h-48 bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center">
                         <i class="fas fa-truck-pickup text-white text-7xl"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <div>
-                                <h3 class="text-xl font-bold text-slate-800">Maruti Brezza</h3>
+                                <h3 class="text-xl font-bold text-slate-800">BREZZA</h3>
                                 <p class="text-sm text-slate-500">Compact SUV</p>
                             </div>
-                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">Trending</span>
+                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">Hot</span>
                         </div>
                         <div class="flex items-center gap-4 mb-4 text-sm">
                             <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 17-25 km/l</span>
@@ -332,7 +503,7 @@
                             <button onclick="openOfferModal('Brezza')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
                                 Get Best Offer
                             </button>
-                            <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20Maruti%20Brezza.%20Please%20share%20details." 
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
                                target="_blank"
                                class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
                                 <i class="fab fa-whatsapp mr-2"></i>Enquire Now
@@ -341,66 +512,32 @@
                     </div>
                 </div>
 
-                <!-- Grand Vitara -->
+                <!-- Invicto -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center">
                         <i class="fas fa-car text-white text-7xl"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <div>
-                                <h3 class="text-xl font-bold text-slate-800">Grand Vitara</h3>
-                                <p class="text-sm text-slate-500">Premium SUV</p>
+                                <h3 class="text-xl font-bold text-slate-800">Invicto</h3>
+                                <p class="text-sm text-slate-500">Premium MPV</p>
                             </div>
-                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">Premium</span>
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">Luxury</span>
                         </div>
                         <div class="flex items-center gap-4 mb-4 text-sm">
-                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 19-27 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 23-25 km/l</span>
                             <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Hybrid</span>
                         </div>
                         <div class="border-t pt-4">
                             <p class="text-sm text-slate-500">Starting On-Road Price</p>
-                            <p class="text-2xl font-bold text-slate-800">₹12.5 Lakh*</p>
+                            <p class="text-2xl font-bold text-slate-800">₹28.5 Lakh*</p>
                         </div>
                         <div class="mt-4 space-y-2">
-                            <button onclick="openOfferModal('Grand Vitara')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            <button onclick="openOfferModal('Invicto')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
                                 Get Best Offer
                             </button>
-                            <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20Grand%20Vitara.%20Please%20share%20details." 
-                               target="_blank"
-                               class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
-                                <i class="fab fa-whatsapp mr-2"></i>Enquire Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Baleno -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                        <i class="fas fa-car-side text-white text-7xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-800">Maruti Baleno</h3>
-                                <p class="text-sm text-slate-500">Premium Hatchback</p>
-                            </div>
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">Popular</span>
-                        </div>
-                        <div class="flex items-center gap-4 mb-4 text-sm">
-                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 22-30 km/l</span>
-                            <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
-                        </div>
-                        <div class="border-t pt-4">
-                            <p class="text-sm text-slate-500">Starting On-Road Price</p>
-                            <p class="text-2xl font-bold text-slate-800">₹7.8 Lakh*</p>
-                        </div>
-                        <div class="mt-4 space-y-2">
-                            <button onclick="openOfferModal('Baleno')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
-                                Get Best Offer
-                            </button>
-                            <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20Maruti%20Baleno.%20Please%20share%20details." 
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
                                target="_blank"
                                class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
                                 <i class="fab fa-whatsapp mr-2"></i>Enquire Now
@@ -434,7 +571,7 @@
                             <button onclick="openOfferModal('Ertiga')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
                                 Get Best Offer
                             </button>
-                            <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20Maruti%20Ertiga.%20Please%20share%20details." 
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
                                target="_blank"
                                class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
                                 <i class="fab fa-whatsapp mr-2"></i>Enquire Now
@@ -443,32 +580,32 @@
                     </div>
                 </div>
 
-                <!-- WagonR -->
+                <!-- Eeco -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
-                        <i class="fas fa-car text-white text-7xl"></i>
+                    <div class="h-48 bg-gradient-to-br from-slate-500 to-slate-600 flex items-center justify-center">
+                        <i class="fas fa-van-shuttle text-white text-7xl"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <div>
-                                <h3 class="text-xl font-bold text-slate-800">Maruti WagonR</h3>
-                                <p class="text-sm text-slate-500">Tall Boy Hatchback</p>
+                                <h3 class="text-xl font-bold text-slate-800">Maruti Eeco</h3>
+                                <p class="text-sm text-slate-500">Utility Van</p>
                             </div>
-                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">Value</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-semibold">Commercial</span>
                         </div>
                         <div class="flex items-center gap-4 mb-4 text-sm">
-                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 24-34 km/l</span>
+                            <span class="flex items-center text-slate-600"><i class="fas fa-gas-pump mr-1 text-maruti-500"></i> 16-27 km/l</span>
                             <span class="flex items-center text-slate-600"><i class="fas fa-cog mr-1 text-maruti-500"></i> Petrol/CNG</span>
                         </div>
                         <div class="border-t pt-4">
                             <p class="text-sm text-slate-500">Starting On-Road Price</p>
-                            <p class="text-2xl font-bold text-slate-800">₹6.0 Lakh*</p>
+                            <p class="text-2xl font-bold text-slate-800">₹5.8 Lakh*</p>
                         </div>
                         <div class="mt-4 space-y-2">
-                            <button onclick="openOfferModal('WagonR')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            <button onclick="openOfferModal('Eeco')" class="w-full gradient-maruti text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all">
                                 Get Best Offer
                             </button>
-                            <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20Maruti%20WagonR.%20Please%20share%20details." 
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
                                target="_blank"
                                class="w-full block text-center border-2 border-maruti-500 text-maruti-600 py-2 rounded-lg font-semibold hover:bg-maruti-50 transition-all">
                                 <i class="fab fa-whatsapp mr-2"></i>Enquire Now
@@ -565,7 +702,7 @@
                             <p id="emiResult" class="text-4xl md:text-5xl font-bold text-maruti-400">₹13,133</p>
                         </div>
                         
-                        <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I%20calculated%20my%20EMI%20on%20your%20website.%20Can%20we%20discuss%20further?" 
+                        <a href="https://wa.me/919554182726?text=Hi%20Rahul,%20I%20calculated%20my%20EMI%20on%20your%20website.%20Can%20we%20discuss%20further?" 
                            target="_blank"
                            class="mt-6 bg-green-500 text-white py-3 rounded-xl font-semibold text-center hover:bg-green-600 transition-all">
                             <i class="fab fa-whatsapp mr-2"></i>Discuss on WhatsApp
@@ -682,14 +819,16 @@
                                 <label class="block text-sm font-medium text-slate-700 mb-2">Select Car Model</label>
                                 <select id="testDriveCar" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-maruti-500 focus:ring-2 focus:ring-maruti-200 input-focus transition-all">
                                     <option value="">Choose a model...</option>
-                                    <option value="Swift">Maruti Swift</option>
-                                    <option value="Brezza">Maruti Brezza</option>
-                                    <option value="Grand Vitara">Grand Vitara</option>
-                                    <option value="Baleno">Maruti Baleno</option>
-                                    <option value="Ertiga">Maruti Ertiga</option>
-                                    <option value="WagonR">Maruti WagonR</option>
-                                    <option value="Dzire">Maruti Dzire</option>
-                                    <option value="Fronx">Maruti Fronx</option>
+                                    <option value="Alto">Alto</option>
+                                    <option value="S-Presso">S-Presso</option>
+                                    <option value="WagonR">WagonR</option>
+                                    <option value="Celerio">Celerio</option>
+                                    <option value="Swift">Swift</option>
+                                    <option value="Dzire">Dzire</option>
+                                    <option value="BREZZA">BREZZA</option>
+                                    <option value="Invicto">Invicto</option>
+                                    <option value="Ertiga">Ertiga</option>
+                                    <option value="Eeco">Eeco</option>
                                 </select>
                             </div>
                             
@@ -722,7 +861,7 @@
                             
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">WhatsApp Number</label>
-                                <input type="tel" id="testDrivePhone" placeholder="+91 98765 43210" required 
+                                <input type="tel" id="testDrivePhone" placeholder="+91 95541 82726" required 
                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-maruti-500 focus:ring-2 focus:ring-maruti-200 input-focus transition-all">
                             </div>
                             
@@ -760,7 +899,7 @@
                         <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">PK</div>
                         <div class="ml-3">
                             <h4 class="font-bold text-slate-800">Pradeep Kumar</h4>
-                            <p class="text-sm text-slate-500">Brezza Owner - Siddharth Nagar</p>
+                            <p class="text-sm text-slate-500">BREZZA Owner - Siddharth Nagar</p>
                         </div>
                     </div>
                 </div>
@@ -780,7 +919,7 @@
                         <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">SR</div>
                         <div class="ml-3">
                             <h4 class="font-bold text-slate-800">Sneha Reddy</h4>
-                            <p class="text-sm text-slate-500">Swift Owner - Siddharth Nagar</p>
+                            <p class="text-sm text-slate-500">Dzire Owner - Siddharth Nagar</p>
                         </div>
                     </div>
                 </div>
@@ -800,7 +939,7 @@
                         <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">AM</div>
                         <div class="ml-3">
                             <h4 class="font-bold text-slate-800">Arun Menon</h4>
-                            <p class="text-sm text-slate-500">Grand Vitara Owner - Siddharth Nagar</p>
+                            <p class="text-sm text-slate-500">Ertiga Owner - Siddharth Nagar</p>
                         </div>
                     </div>
                 </div>
@@ -844,21 +983,23 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <a href="https://wa.me/919876543210" target="_blank" class="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all group">
+                <a href="https://wa.me/919554182726" target="_blank" class="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all group">
                     <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <i class="fab fa-whatsapp text-white text-2xl"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">WhatsApp</h3>
-                    <p class="text-slate-400 text-sm">+91 98765 43210</p>
+                    <p class="text-slate-400 text-sm">+91 95541 82726</p>
+                    <p class="text-slate-400 text-sm">+91 77058 03060</p>
                     <p class="text-maruti-400 text-sm mt-2">Fastest Response</p>
                 </a>
                 
-                <a href="tel:+919876543210" class="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all group">
+                <a href="tel:+919554182726" class="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all group">
                     <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <i class="fas fa-phone text-white text-2xl"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Call Me</h3>
-                    <p class="text-slate-400 text-sm">+91 98765 43210</p>
+                    <p class="text-slate-400 text-sm">+91 95541 82726</p>
+                    <p class="text-slate-400 text-sm">+91 77058 03060</p>
                     <p class="text-maruti-400 text-sm mt-2">Available 9AM - 9PM</p>
                 </a>
                 
@@ -869,6 +1010,7 @@
                     <h3 class="text-white font-bold text-lg mb-2">Showroom</h3>
                     <p class="text-slate-400 text-sm">Maruti Suzuki Arena</p>
                     <p class="text-slate-400 text-sm">Siddharth Nagar</p>
+                    <a href="https://maps.app.goo.gl/v4bKfRxiUVxugACn6" target="_blank" class="text-maruti-400 text-sm hover:underline mt-1 inline-block"><i class="fas fa-map-marker-alt mr-1"></i>View on Google Maps</a>
                 </div>
             </div>
             
@@ -881,16 +1023,16 @@
                             <label class="block text-sm font-medium text-slate-700 mb-2">Interested Car Model</label>
                             <select id="leadCar" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-maruti-500 focus:ring-2 focus:ring-maruti-200 input-focus transition-all">
                                 <option value="">Select a car...</option>
-                                <option value="Swift">Maruti Swift</option>
-                                <option value="Brezza">Maruti Brezza</option>
-                                <option value="Grand Vitara">Grand Vitara</option>
-                                <option value="Baleno">Maruti Baleno</option>
-                                <option value="Ertiga">Maruti Ertiga</option>
-                                <option value="WagonR">Maruti WagonR</option>
-                                <option value="Dzire">Maruti Dzire</option>
-                                <option value="Fronx">Maruti Fronx</option>
-                                <option value="Jimny">Jimny</option>
+                                <option value="Alto">Alto</option>
+                                <option value="S-Presso">S-Presso</option>
+                                <option value="WagonR">WagonR</option>
+                                <option value="Celerio">Celerio</option>
+                                <option value="Swift">Swift</option>
+                                <option value="Dzire">Dzire</option>
+                                <option value="BREZZA">BREZZA</option>
                                 <option value="Invicto">Invicto</option>
+                                <option value="Ertiga">Ertiga</option>
+                                <option value="Eeco">Eeco</option>
                             </select>
                         </div>
                         
@@ -902,7 +1044,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">WhatsApp Number</label>
-                                <input type="tel" id="leadPhone" placeholder="+91 98765 43210" required 
+                                <input type="tel" id="leadPhone" placeholder="+91 95541 82726" required 
                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-maruti-500 focus:ring-2 focus:ring-maruti-200 input-focus transition-all">
                             </div>
                         </div>
@@ -972,16 +1114,17 @@
                     <ul class="space-y-2 text-sm">
                         <li><a href="#cars" class="hover:text-maruti-400 transition-colors">Maruti Swift</a></li>
                         <li><a href="#cars" class="hover:text-maruti-400 transition-colors">Maruti Brezza</a></li>
-                        <li><a href="#cars" class="hover:text-maruti-400 transition-colors">Grand Vitara</a></li>
-                        <li><a href="#cars" class="hover:text-maruti-400 transition-colors">Maruti Baleno</a></li>
+                        <li><a href="#cars" class="hover:text-maruti-400 transition-colors">Maruti Ertiga</a></li>
+                        <li><a href="#cars" class="hover:text-maruti-400 transition-colors">Maruti Dzire</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="text-white font-bold mb-4">Contact</h4>
                     <ul class="space-y-2 text-sm">
-                        <li class="flex items-center"><i class="fab fa-whatsapp mr-2 text-green-400"></i> +91 98765 43210</li>
-                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-blue-400"></i> +91 98765 43210</li>
+                        <li class="flex items-center"><i class="fab fa-whatsapp mr-2 text-green-400"></i> +91 95541 82726</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-blue-400"></i> +91 95541 82726</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-2 text-blue-400"></i> +91 77058 03060</li>
                         <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-400"></i> Siddharth Nagar</li>
                     </ul>
                 </div>
@@ -995,7 +1138,7 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919876543210?text=Hi%20Rahul,%20I'm%20interested%20in%20buying%20a%20Maruti%20car.%20Can%20you%20help%20me%20with%20the%20best%20price%20and%20EMI%20options?" 
+    <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
        target="_blank"
        class="fixed bottom-6 right-6 z-50 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform pulse-ring">
         <i class="fab fa-whatsapp text-3xl"></i>
@@ -1149,7 +1292,7 @@
             const phone = document.getElementById('testDrivePhone').value;
 
             const message = `Hi Rahul,%0A%0AI would like to book a test drive for ${car}.%0A%0ADate: ${date}%0ATime: ${time}%0AArea: ${area}%0APhone: ${phone}`;
-            window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+            window.open(`https://wa.me/919554182726?text=${message}`, '_blank');
             
             document.getElementById('testDriveForm').reset();
         }
@@ -1162,7 +1305,7 @@
             const buyingTime = document.querySelector('input[name="buyingTime"]:checked').value;
 
             const message = `Hi Rahul,%0A%0AI'm interested in ${car}.%0AName: ${name}%0APhone: ${phone}%0APlanning to buy: ${buyingTime}%0A%0APlease share the best price and offers.`;
-            window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+            window.open(`https://wa.me/919554182726?text=${message}`, '_blank');
             
             document.getElementById('leadForm').reset();
             document.getElementById('successModal').classList.remove('hidden');
@@ -1175,7 +1318,7 @@
             const phone = document.getElementById('modalPhone').value;
 
             const message = `Hi Rahul,%0A%0AI'm interested in ${car} and would like the best offer.%0AName: ${name}%0APhone: ${phone}`;
-            window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+            window.open(`https://wa.me/919554182726?text=${message}`, '_blank');
             
             closeOfferModal();
             document.getElementById('successModal').classList.remove('hidden');
