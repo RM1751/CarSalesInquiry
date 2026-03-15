@@ -17,14 +17,14 @@
     
     <!-- Dashboard Styles -->
     <style>
-        /* Background Slider Styles */
+        /* Background Slider Styles - FULL SCREEN */
         .bg-slider {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: 0;
             overflow: hidden;
         }
         .bg-slider-image {
@@ -34,8 +34,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         .bg-slider-image.active {
             opacity: 1;
@@ -46,7 +49,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(30, 90, 231, 0.85) 0%, rgba(29, 93, 197, 0.85) 50%, rgba(31, 59, 99, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(30, 90, 231, 0.88) 0%, rgba(29, 93, 197, 0.88) 50%, rgba(31, 59, 99, 0.92) 100%);
+            z-index: 1;
+        }
+        
+        /* Mobile-specific slider adjustments */
+        @media (max-width: 768px) {
+            .bg-slider-image {
+                object-position: center center;
+            }
+            .hero-content {
+                position: relative;
+                z-index: 2;
+            }
         }
         
         /* Dashboard Styles */
@@ -62,10 +77,15 @@
         .upload-zone {
             border: 2px dashed #cbd5e1;
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .upload-zone {
+                padding: 40px;
+            }
         }
         .upload-zone:hover, .upload-zone.dragover {
             border-color: #e67e00;
@@ -73,8 +93,19 @@
         }
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        @media (min-width: 640px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 16px;
+            }
+        }
+        @media (min-width: 768px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
         }
         .photo-item {
             position: relative;
@@ -88,6 +119,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         .photo-item:hover img {
             transform: scale(1.05);
@@ -96,30 +129,53 @@
             position: absolute;
             top: 4px;
             right: 4px;
-            background: rgba(239, 68, 68, 0.9);
+            background: rgba(239, 68, 68, 0.95);
             color: white;
             border: none;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .photo-item:hover .photo-delete {
             opacity: 1;
+            transition: opacity 0.3s ease;
+            font-size: 12px;
+            z-index: 10;
+        }
+        @media (min-width: 768px) {
+            .photo-delete {
+                opacity: 0;
+                width: 24px;
+                height: 24px;
+            }
+            .photo-item:hover .photo-delete {
+                opacity: 1;
+            }
         }
         .category-tabs {
             display: flex;
             gap: 8px;
             overflow-x: auto;
             padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #e67e00 #e2e8f0;
+        }
+        .category-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+        .category-tabs::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 3px;
+        }
+        .category-tabs::-webkit-scrollbar-thumb {
+            background: #e67e00;
+            border-radius: 3px;
         }
         .category-tab {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 9999px;
             border: 2px solid #e2e8f0;
             background: white;
@@ -128,6 +184,13 @@
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            .category-tab {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
         }
         .category-tab:hover {
             border-color: #e67e00;
@@ -140,10 +203,20 @@
         }
         .slider-preview {
             position: relative;
-            height: 300px;
+            height: 200px;
             border-radius: 12px;
             overflow: hidden;
             background: #1e293b;
+        }
+        @media (min-width: 640px) {
+            .slider-preview {
+                height: 250px;
+            }
+        }
+        @media (min-width: 768px) {
+            .slider-preview {
+                height: 300px;
+            }
         }
         .slider-preview img {
             position: absolute;
@@ -163,6 +236,26 @@
             border-radius: 9999px;
             font-size: 12px;
             font-weight: 600;
+        }
+        
+        /* Mobile dashboard improvements */
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .dashboard-title {
+                font-size: 24px;
+            }
+            .mobile-full-width {
+                width: 100%;
+            }
+        }
+        
+        /* Touch-friendly buttons */
+        .touch-button {
+            min-height: 44px;
+            min-width: 44px;
         }
     </style>
     
@@ -304,82 +397,87 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-white space-y-6">
-                    <div class="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        <span class="text-sm font-medium">Available Now - Siddharth Nagar</span>
+    <section id="home" class="gradient-bg min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <!-- Background content wrapper -->
+        <div class="relative z-10 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <!-- Left Content -->
+                    <div class="hero-content text-white space-y-4 md:space-y-6 text-center md:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full backdrop-blur-sm mx-auto md:mx-0">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-xs md:text-sm font-medium">Available Now - Siddharth Nagar</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                            Get the <span class="text-transparent bg-clip-text bg-gradient-to-r from-maruti-400 to-yellow-400">Best Maruti Deal</span> in Siddharth Nagar
+                        </h1>
+                        
+                        <p class="text-lg md:text-xl text-slate-300 px-2 md:px-0">
+                            Zero Stress, Full Transparency. Let me help you find your perfect car.
+                        </p>
+                        
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 text-xs md:text-sm text-slate-300">
+                            <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-1.5 md:mr-2"></i>8+ Years Exp.</span>
+                            <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-1.5 md:mr-2"></i>500+ Deliveries</span>
+                            <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-1.5 md:mr-2"></i>Best Price</span>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
+                            <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
+                               target="_blank"
+                               class="touch-button pulse-ring gradient-maruti text-white px-6 py-3.5 md:px-8 md:py-4 rounded-xl font-bold text-base md:text-lg hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-xl md:text-2xl mr-2 md:mr-3"></i>
+                                WhatsApp Me
+                            </a>
+                            <a href="#test-drive" class="touch-button glass-effect text-white px-6 py-3.5 md:px-8 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white/10 transition-all flex items-center justify-center border border-white/20">
+                                <i class="fas fa-steering-wheel mr-2 md:mr-3"></i>
+                                Book Test Drive
+                            </a>
+                        </div>
                     </div>
                     
-                    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-                        Get the <span class="text-transparent bg-clip-text bg-gradient-to-r from-maruti-400 to-yellow-400">Best Maruti Deal</span> in Siddharth Nagar
-                    </h1>
-                    
-                    <p class="text-xl text-slate-300">
-                        Zero Stress, Full Transparency. Let me help you find your perfect car.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-4 text-sm text-slate-300">
-                        <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i>8+ Years Experience</span>
-                        <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i>500+ Cars Delivered</span>
-                        <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i>Best Price Guarantee</span>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <a href="https://wa.me/919554182726?text=Thank%20you%20for%20contacting%20Rahul%20Mishra%20Relationship%20Manager%20MARUTI%20SUZUKI%20ARENA%20SIDDHARTH%20NAGAR%20SHOWROOM.%20Please%20let%20us%20know%20how%20we%20can%20help%20you." 
-                           target="_blank"
-                           class="pulse-ring gradient-maruti text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center">
-                            <i class="fab fa-whatsapp text-2xl mr-3"></i>
-                            WhatsApp Me
-                        </a>
-                        <a href="#test-drive" class="glass-effect text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center border border-white/20">
-                            <i class="fas fa-steering-wheel mr-3"></i>
-                            Book Test Drive
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-r from-maruti-500/20 to-blue-500/20 rounded-3xl blur-3xl"></div>
-                    <div class="relative glass-effect rounded-3xl p-8 float-animation">
-                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 text-center">
-                            <!-- Profile Photo - Rahul Mishra -->
-                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-maruti-400 shadow-lg bg-gradient-to-br from-maruti-400 to-maruti-600">
-                                <img id="profilePhoto" src="assets/rahulphot.jpg" alt="Rahul Mishra" 
-                                     class="w-full h-full object-cover"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="w-full h-full items-center justify-center hidden">
-                                    <i class="fas fa-user text-white text-5xl"></i>
+                    <!-- Right Content - Profile Card -->
+                    <div class="relative mt-4 md:mt-0">
+                        <div class="absolute inset-0 bg-gradient-to-r from-maruti-500/20 to-blue-500/20 rounded-3xl blur-3xl"></div>
+                        <div class="relative glass-effect rounded-2xl md:rounded-3xl p-4 md:p-8 float-animation">
+                            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl md:rounded-2xl p-4 md:p-6 text-center">
+                                <!-- Profile Photo - Rahul Mishra -->
+                                <div class="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden mb-3 md:mb-4 border-4 border-maruti-400 shadow-lg bg-gradient-to-br from-maruti-400 to-maruti-600">
+                                    <img id="profilePhoto" src="assets/rahulphot.jpg" alt="Rahul Mishra" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="w-full h-full items-center justify-center hidden">
+                                        <i class="fas fa-user text-white text-4xl md:text-5xl"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 class="text-white text-2xl font-bold">Rahul Mishra</h3>
-                            <p class="text-maruti-400 font-semibold">Senior Relationship  Manager</p>
-                            <p class="text-slate-400 text-sm mt-1">Maruti Suzuki, Siddharth Nagar</p>
-                            
-                            <div class="mt-6 pt-6 border-t border-slate-700">
-                                <div class="grid grid-cols-3 gap-4 text-center">
-                                    <div>
-                                        <p class="text-2xl font-bold text-white">8+</p>
-                                        <p class="text-xs text-slate-400">Years Exp.</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-2xl font-bold text-white">500+</p>
-                                        <p class="text-xs text-slate-400">Deliveries</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-2xl font-bold text-white">4.9★</p>
-                                        <p class="text-xs text-slate-400">Rating</p>
+                                <h3 class="text-white text-xl md:text-2xl font-bold">Rahul Mishra</h3>
+                                <p class="text-maruti-400 font-semibold text-sm md:text-base">Senior Relationship Manager</p>
+                                <p class="text-slate-400 text-xs md:text-sm mt-1">Maruti Suzuki, Siddharth Nagar</p>
+                                
+                                <div class="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-slate-700">
+                                    <div class="grid grid-cols-3 gap-2 md:gap-4 text-center">
+                                        <div>
+                                            <p class="text-xl md:text-2xl font-bold text-white">8+</p>
+                                            <p class="text-xs text-slate-400">Years</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xl md:text-2xl font-bold text-white">500+</p>
+                                            <p class="text-xs text-slate-400">Cars Sold</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xl md:text-2xl font-bold text-white">4.9★</p>
+                                            <p class="text-xs text-slate-400">Rating</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Floating Badge -->
-                    <div class="absolute -bottom-4 -left-4 bg-green-500 text-white px-4 py-2 rounded-xl shadow-lg animate-bounce">
-                        <i class="fas fa-shield-alt mr-2"></i>Authorized Dealer
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-green-500 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl shadow-lg animate-bounce text-xs md:text-sm">
+                            <i class="fas fa-shield-alt mr-1 md:mr-2"></i>Authorized
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1418,72 +1516,79 @@
     </section>
 
     <!-- Admin Dashboard Section -->
-    <section id="dashboard" class="py-20 bg-gradient-to-br from-slate-50 to-slate-100">
+    <section id="dashboard" class="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-10">
-                <div>
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="admin-badge">ADMIN</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800">Dashboard</h2>
-                    </div>
-                    <p class="text-slate-600">Manage your client photos and car category images</p>
-                </div>
-                <div class="hidden md:block">
-                    <button onclick="saveAllData()" class="gradient-maruti text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2">
-                        <i class="fas fa-save"></i>
-                        Save Changes
-                    </button>
+            <!-- Device Notice Banner -->
+            <div class="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
+                <i class="fas fa-mobile-alt text-amber-500 text-xl mt-0.5"></i>
+                <div class="flex-1">
+                    <p class="text-amber-800 font-medium text-sm md:text-base">📱 Important: Photos are saved on this device only</p>
+                    <p class="text-amber-700 text-xs md:text-sm mt-1">Photos you upload here are stored in your browser. To see these photos on mobile, you'll need to upload them on your mobile device too. This keeps your data private and fast!</p>
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Header -->
+            <div class="dashboard-header flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-10 gap-4">
+                <div>
+                    <div class="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+                        <span class="admin-badge">ADMIN</span>
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800">Dashboard</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm md:text-base">Manage your client photos and car category images</p>
+                </div>
+                <button onclick="saveAllData()" class="touch-button mobile-full-width gradient-maruti text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
                 <!-- Client Photos Slider Management -->
-                <div class="dashboard-card p-6">
-                    <div class="flex items-center justify-between mb-6">
+                <div class="dashboard-card p-4 md:p-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-3">
                         <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-images text-white text-xl"></i>
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-images text-white text-lg md:text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-slate-800">Client Delivery Photos</h3>
-                                <p class="text-sm text-slate-500">Background slider images</p>
+                                <h3 class="text-lg md:text-xl font-bold text-slate-800">Client Delivery Photos</h3>
+                                <p class="text-xs md:text-sm text-slate-500">Background slider images</p>
                             </div>
                         </div>
-                        <label class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer transition-all flex items-center gap-2">
+                        <label class="touch-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer transition-all flex items-center justify-center gap-2 text-sm md:text-base">
                             <i class="fas fa-plus"></i>
-                            <span class="hidden sm:inline">Add Photo</span>
+                            <span>Add Photo</span>
                             <input type="file" accept="image/*" class="hidden" onchange="handleClientPhotoUpload(event)">
                         </label>
                     </div>
 
                     <!-- Slider Preview -->
-                    <div class="mb-6">
-                        <p class="text-sm font-medium text-slate-700 mb-3">Live Preview (Background Slider)</p>
+                    <div class="mb-4 md:mb-6">
+                        <p class="text-sm font-medium text-slate-700 mb-2 md:mb-3">Live Preview (Background Slider)</p>
                         <div class="slider-preview" id="sliderPreview">
                             <div id="sliderPreviewImages"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                                <p class="text-white text-sm font-medium">Showing <span id="sliderCount">0</span> photos</p>
+                            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/70 to-transparent">
+                                <p class="text-white text-xs md:text-sm font-medium">Showing <span id="sliderCount">0</span> photos</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Client Photos Grid -->
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-slate-700 mb-3">Manage Photos</p>
+                        <p class="text-sm font-medium text-slate-700 mb-2 md:mb-3">Manage Photos</p>
                         <div class="photo-grid" id="clientPhotosGrid">
-                            <div class="col-span-full text-center py-12 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200" id="emptyClientPhotos">
-                                <i class="fas fa-camera text-slate-300 text-4xl mb-3"></i>
-                                <p class="text-slate-400 text-sm">No photos yet. Upload photos with your clients!</p>
+                            <div class="col-span-full text-center py-8 md:py-12 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200" id="emptyClientPhotos">
+                                <i class="fas fa-camera text-slate-300 text-3xl md:text-4xl mb-3"></i>
+                                <p class="text-slate-400 text-xs md:text-sm">No photos yet. Upload photos with your clients!</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-4 border-t border-slate-100 gap-3">
                         <div class="flex items-center gap-2">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" id="enableSlider" checked class="w-5 h-5 text-maruti-500 rounded focus:ring-maruti-500" onchange="toggleSlider()">
-                                <span class="text-sm text-slate-700">Enable background slider</span>
+                                <span class="text-sm text-slate-700">Enable slider</span>
                             </label>
                         </div>
                         <div class="flex items-center gap-2">
@@ -1920,7 +2025,17 @@
             renderClientPhotos();
             renderCarPhotos();
             initBackgroundSlider();
+            
+            // Handle mobile viewport height for full-screen slider
+            handleMobileViewport();
+            window.addEventListener('resize', handleMobileViewport);
         });
+
+        // Handle mobile viewport for full-screen experience
+        function handleMobileViewport() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
 
         // Load Data from localStorage
         function loadDashboardData() {
@@ -1941,15 +2056,17 @@
             try {
                 localStorage.setItem('rahulCarSalesDashboard', JSON.stringify(dashboardData));
                 
-                // Show success notification
-                const btn = document.querySelector('button[onclick="saveAllData()"]');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
-                btn.classList.add('bg-green-500');
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('bg-green-500');
-                }, 2000);
+                // Show success notification on all save buttons
+                const buttons = document.querySelectorAll('button[onclick="saveAllData()"]');
+                buttons.forEach(btn => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+                    btn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                    }, 2000);
+                });
             } catch (e) {
                 alert('Error saving data. Storage may be full.');
             }
@@ -2089,9 +2206,16 @@
             slider.id = 'bgSlider';
             slider.className = 'bg-slider';
             
+            // Use higher quality images for mobile with proper sizing
+            const isMobile = window.innerWidth < 768;
+            
             slider.innerHTML = `
                 ${dashboardData.clientPhotos.map((photo, index) => `
-                    <img src="${photo.src}" class="bg-slider-image ${index === 0 ? 'active' : ''}" data-index="${index}">
+                    <img src="${photo.src}" 
+                         class="bg-slider-image ${index === 0 ? 'active' : ''}" 
+                         data-index="${index}"
+                         loading="${index === 0 ? 'eager' : 'lazy'}"
+                         alt="Client delivery photo ${index + 1}">
                 `).join('')}
                 <div class="bg-slider-overlay"></div>
             `;
@@ -2107,6 +2231,8 @@
 
             sliderInterval = setInterval(() => {
                 const slides = document.querySelectorAll('#bgSlider .bg-slider-image');
+                if (slides.length === 0) return;
+                
                 slides.forEach(slide => slide.classList.remove('active'));
                 
                 currentSlide = (currentSlide + 1) % slides.length;
@@ -2114,6 +2240,19 @@
                     slides[currentSlide].classList.add('active');
                 }
             }, speed);
+            
+            // Preload next image for smoother mobile experience
+            preloadNextImage(1);
+        }
+        
+        // Preload images for smoother slider
+        function preloadNextImage(nextIndex) {
+            if (dashboardData.clientPhotos.length <= 1) return;
+            const nextPhoto = dashboardData.clientPhotos[nextIndex % dashboardData.clientPhotos.length];
+            if (nextPhoto && nextPhoto.src) {
+                const img = new Image();
+                img.src = nextPhoto.src;
+            }
         }
 
         // ==================== CAR CATEGORY PHOTOS ====================
