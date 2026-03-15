@@ -23,3 +23,82 @@ No further action needed - the photo will automatically
 load when you open index.html in a browser.
 
 ==========================================
+
+
+==========================================
+   📸 NEW DASHBOARD FEATURES GUIDE
+==========================================
+
+We've added a powerful Admin Dashboard to manage photos!
+Access it by clicking "Dashboard" in the navigation menu.
+
+─────────────────────────────────────────
+1️⃣  CLIENT DELIVERY PHOTOS SLIDER
+─────────────────────────────────────────
+
+WHAT IT DOES:
+- Upload photos taken with clients during car delivery
+- These photos automatically run as a background slideshow
+- Displayed on the hero section behind the main content
+
+HOW TO USE:
+1. Go to Dashboard section
+2. Click "Add Photo" in the Client Delivery Photos card
+3. Select photos from your device
+4. Photos will automatically appear in the slider
+5. Adjust slider speed (3, 5, 8, or 10 seconds)
+6. Toggle on/off as needed
+
+TIPS:
+- Take happy photos with clients holding their new car keys
+- Group photos with family members work great
+- In front of the new car is the perfect backdrop
+- Photos auto-save to your browser
+
+─────────────────────────────────────────
+2️⃣  CAR CATEGORY PHOTOS
+─────────────────────────────────────────
+
+WHAT IT DOES:
+- Upload actual car photos for each model
+- Photos replace the generic icons on car cards
+- Customers see real images of each car
+
+AVAILABLE CATEGORIES:
+- Alto, S-Presso, WagonR
+- Celerio, Swift, Dzire
+- BREZZA, Ertiga, Eeco
+
+HOW TO USE:
+1. Go to Dashboard section
+2. Select car model from the category tabs
+3. Click "Upload" or drag & drop photos
+4. Photos appear on the car cards automatically
+5. Upload multiple angles of each car
+
+TIPS:
+- Use showroom photos for best quality
+- Front 3/4 angle works best for car cards
+- Interior shots can also be uploaded
+- Clear, well-lit photos attract more customers
+
+─────────────────────────────────────────
+3️⃣  SAVING YOUR CHANGES
+─────────────────────────────────────────
+
+IMPORTANT:
+- All photos are saved to browser's local storage
+- Click "Save Changes" button to persist data
+- Data stays saved even after closing browser
+- Clear browser cache will reset all photos
+
+HOW TO BACKUP:
+- Currently, photos are stored locally in your browser
+- For permanent backup, keep original photo files safe
+- Future version may include cloud storage option
+
+==========================================
+
+Happy selling! 🚗💨
+
+==========================================
