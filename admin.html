@@ -260,7 +260,7 @@
         <div class="mt-6 p-4 bg-slate-100 rounded-xl text-xs text-slate-600">
             <p class="font-medium mb-1">Debug Info:</p>
             <p>Cloud Name: dbaduzib2</p>
-            <p>Upload Preset: rahul_car_sales</p>
+            <p>Upload Preset: rahulcat</p>
             <p id="debugStatus">Status: Waiting for upload...</p>
         </div>
     </main>
@@ -268,7 +268,7 @@
     <script>
         // Cloudinary Config
         const CLOUD_NAME = 'dbaduzib2';
-        const UPLOAD_PRESET = 'rahul_car_sales';
+        const UPLOAD_PRESET = 'rahulcat';
         
         let appData = {
             sliderPhotos: [],
@@ -356,7 +356,7 @@
                 };
             } catch (error) {
                 updateDebug('Upload failed: ' + error.message);
-                showError('Upload failed: ' + error.message + '\n\nMake sure upload preset "rahul_car_sales" is created in Cloudinary and set to UNSIGNED.');
+                showError('Upload failed: ' + error.message + '\n\nMake sure upload preset "rahulcat" is created in Cloudinary and set to UNSIGNED.');
                 throw error;
             }
         }
