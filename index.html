@@ -15,10 +15,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    
     <!-- Background Slider Styles -->
     <style>
         /* Full Screen Background Slider */
@@ -1605,7 +1601,6 @@
         // ==================== BACKGROUND SLIDER & CAR PHOTOS ====================
         
         let sliderInterval = null;
-        let db;
         let appData = {
             sliderPhotos: [],
             carPhotos: {},
@@ -1613,52 +1608,42 @@
             sliderSpeed: 5000
         };
 
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDummyKeyForRahulCarSales",
-            authDomain: "rahul-car-sales.firebaseapp.com",
-            databaseURL: "https://rahul-car-sales-default-rtdb.firebaseio.com",
-            projectId: "rahul-car-sales",
-            storageBucket: "rahul-car-sales.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef123456"
-        };
+        // JSONBin.io Configuration
+        const BIN_ID = '69b6f6d0c3097a1dd529abdc';
+        const API_KEY = '$2a$10$JtzTClgLvwcaszkQFSpyiOwH.43ZClIjE78QbU/63t5CyoI1UDIAO';
+        const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            try {
-                firebase.initializeApp(firebaseConfig);
-                db = firebase.database();
-                loadFromCloud();
-            } catch (e) {
-                console.log('Using local fallback');
-                loadFromLocal();
-            }
+            loadFromCloud();
+            // Refresh every 10 seconds to get new photos
+            setInterval(loadFromCloud, 10000);
         });
 
-        // Load from Firebase Cloud
-        function loadFromCloud() {
-            db.ref('carSalesData').on('value', (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    appData = data;
-                    initBackgroundSlider();
-                    applyCarPhotos();
-                }
-            });
-        }
-
-        // Load from Local (fallback)
-        function loadFromLocal() {
+        // Load from JSONBin Cloud
+        async function loadFromCloud() {
             try {
-                const saved = localStorage.getItem('rahulCarSalesData');
-                if (saved) {
-                    appData = JSON.parse(saved);
-                    initBackgroundSlider();
-                    applyCarPhotos();
+                const response = await fetch(JSONBIN_URL, {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.record) {
+                        appData = result.record;
+                        initBackgroundSlider();
+                        applyCarPhotos();
+                    }
                 }
             } catch (e) {
-                console.log('No saved data');
+                console.log('Cloud load failed, trying localStorage');
+                // Fallback to localStorage
+                const local = localStorage.getItem('rahulCarSalesData');
+                if (local) {
+                    appData = JSON.parse(local);
+                    initBackgroundSlider();
+                    applyCarPhotos();
+                }
             }
         }
 
