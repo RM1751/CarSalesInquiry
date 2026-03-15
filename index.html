@@ -15,6 +15,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
     <!-- Background Slider Styles -->
     <style>
         /* Full Screen Background Slider */
@@ -1601,6 +1605,7 @@
         // ==================== BACKGROUND SLIDER & CAR PHOTOS ====================
         
         let sliderInterval = null;
+        let db;
         let appData = {
             sliderPhotos: [],
             carPhotos: {},
@@ -1608,28 +1613,49 @@
             sliderSpeed: 5000
         };
 
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDummyKeyForRahulCarSales",
+            authDomain: "rahul-car-sales.firebaseapp.com",
+            databaseURL: "https://rahul-car-sales-default-rtdb.firebaseio.com",
+            projectId: "rahul-car-sales",
+            storageBucket: "rahul-car-sales.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            initBackgroundSlider();
-            applyCarPhotos();
-            
-            // Listen for storage changes (when admin updates photos)
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'rahulCarSalesData') {
-                    loadData();
+            try {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                loadFromCloud();
+            } catch (e) {
+                console.log('Using local fallback');
+                loadFromLocal();
+            }
+        });
+
+        // Load from Firebase Cloud
+        function loadFromCloud() {
+            db.ref('carSalesData').on('value', (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    appData = data;
                     initBackgroundSlider();
                     applyCarPhotos();
                 }
             });
-        });
+        }
 
-        // Load data from localStorage (set by admin.html)
-        function loadData() {
+        // Load from Local (fallback)
+        function loadFromLocal() {
             try {
                 const saved = localStorage.getItem('rahulCarSalesData');
                 if (saved) {
                     appData = JSON.parse(saved);
+                    initBackgroundSlider();
+                    applyCarPhotos();
                 }
             } catch (e) {
                 console.log('No saved data');
