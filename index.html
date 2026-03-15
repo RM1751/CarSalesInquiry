@@ -1613,6 +1613,15 @@
             loadData();
             initBackgroundSlider();
             applyCarPhotos();
+            
+            // Listen for storage changes (when admin updates photos)
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'rahulCarSalesData') {
+                    loadData();
+                    initBackgroundSlider();
+                    applyCarPhotos();
+                }
+            });
         });
 
         // Load data from localStorage (set by admin.html)
@@ -1650,7 +1659,7 @@
                          class="bg-slider-image ${index === 0 ? 'active' : ''}" 
                          data-index="${index}"
                          loading="${index === 0 ? 'eager' : 'lazy'}"
-                         alt="Client delivery photo ${index + 1}">
+                         alt="Client photo ${index + 1}">
                 `).join('')}
                 <div class="bg-slider-overlay"></div>
             `;
