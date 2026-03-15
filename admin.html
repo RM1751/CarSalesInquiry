@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Admin Dashboard - Rahul Car Sales</title>
+    <title>Admin Dashboard - Rahul Car Sales v3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -236,14 +236,17 @@
         }
 
         function initCategoryTabs() {
+            console.log('Initializing category tabs...');
             const tabs = document.querySelectorAll('#carTabs .category-tab');
+            console.log('Found tabs:', tabs.length);
+            
             tabs.forEach(function(tab) {
                 tab.addEventListener('click', function() {
                     const category = this.getAttribute('data-category');
-                    console.log('Selected category:', category);
+                    console.log('Clicked category:', category);
                     
                     // Update active state
-                    tabs.forEach(t => t.classList.remove('active'));
+                    tabs.forEach(function(t) { t.classList.remove('active'); });
                     this.classList.add('active');
                     
                     // Update current category
@@ -252,6 +255,9 @@
                     
                     // Re-render photos
                     renderCarPhotos();
+                    
+                    // Show feedback
+                    showMessage('carMsg', 'Switched to ' + category, 'success');
                 });
             });
         }
@@ -279,8 +285,12 @@
         }
 
         function addCarPhoto() {
+            console.log('addCarPhoto called, current category:', currentCategory);
+            
             const input = document.getElementById('carUrlInput');
             const url = input.value.trim();
+            
+            console.log('URL entered:', url);
             
             if (!url) {
                 showMessage('carMsg', 'Please enter a URL', 'error');
@@ -292,22 +302,31 @@
                 return;
             }
 
-            console.log('Adding car photo for', currentCategory, ':', url);
-            
+            // Initialize array if needed
             if (!appData.carPhotos[currentCategory]) {
                 appData.carPhotos[currentCategory] = [];
             }
 
+            // Add photo
             appData.carPhotos[currentCategory].push({
                 id: Date.now(),
                 url: url,
                 category: currentCategory
             });
             
+            console.log('Photo added. Total photos for', currentCategory, ':', appData.carPhotos[currentCategory].length);
+            
+            // Clear input
             input.value = '';
+            
+            // Update display
             renderCarPhotos();
+            
+            // Save
             saveData();
-            showMessage('carMsg', 'Photo added to ' + currentCategory + '!', 'success');
+            
+            // Show success
+            showMessage('carMsg', 'Photo added to ' + currentCategory + '! Photo count: ' + appData.carPhotos[currentCategory].length, 'success');
         }
 
         function renderAll() {
