@@ -25,6 +25,28 @@
         .save-indicator.saved { background: #dcfce7; color: #166534; }
         .save-indicator.saving { background: #dbeafe; color: #1e40af; }
         .save-indicator.error { background: #fee2e2; color: #991b1b; }
+        
+        /* Toast Notifications */
+        #toastContainer { position: fixed; top: 80px; right: 20px; z-index: 9999; }
+        .toast { 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+            color: white; 
+            font-weight: 500;
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+            min-width: 280px;
+        }
+        .toast.success { background: #22c55e; }
+        .toast.error { background: #ef4444; }
+        .toast.info { background: #3b82f6; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+        .toast.hiding { animation: slideOut 0.3s ease forwards; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen">
@@ -220,13 +242,10 @@
         // Toast Notification System
         function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
+            if (!container) return;
             
-            const colors = {
-                success: 'bg-green-500',
-                error: 'bg-red-500',
-                info: 'bg-blue-500'
-            };
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
             
             const icons = {
                 success: 'fa-check-circle',
@@ -234,21 +253,18 @@
                 info: 'fa-info-circle'
             };
             
-            toast.className = `${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 min-w-[250px] transform transition-all duration-300 translate-x-full`;
             toast.innerHTML = `
                 <i class="fas ${icons[type]}"></i>
-                <span class="text-sm font-medium">${message}</span>
+                <span>${message}</span>
             `;
             
             container.appendChild(toast);
             
-            // Animate in
-            setTimeout(() => toast.classList.remove('translate-x-full'), 100);
-            
             // Remove after 3 seconds
             setTimeout(() => {
-                toast.classList.add('translate-x-full');
+                toast.classList.add('hiding');
                 setTimeout(() => toast.remove(), 300);
+            }, 3000);
             }, 3000);
         }
 
@@ -337,9 +353,9 @@
                 return;
             }
 
-            // Test if image loads
-            const img = new Image();
-            img.onload = async function() {
+            showToast('Adding photo...', 'info');
+
+            try {
                 appData.sliderPhotos.push({
                     id: Date.now(),
                     url: url
@@ -347,13 +363,31 @@
                 
                 input.value = '';
                 renderSliderPhotos();
-                await saveData();
-                showToast('✅ Photo added to slider! Visible to everyone.', 'success');
-            };
-            img.onerror = function() {
-                showToast('❌ Invalid image URL. Please check the link.', 'error');
-            };
-            img.src = url;
+                
+                // Save to cloud
+                const response = await fetch(JSONBIN_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEY
+                    },
+                    body: JSON.stringify(appData)
+                });
+                
+                if (response.ok) {
+                    localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
+                    setSaveStatus('saved');
+                    showToast('Photo added! Visible to everyone.', 'success');
+                } else {
+                    throw new Error('Save failed');
+                }
+            } catch (e) {
+                console.error('Error:', e);
+                // Save to localStorage as backup
+                localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
+                setSaveStatus('error');
+                showToast('Saved locally. Cloud sync failed.', 'error');
+            }
         }
 
         // Add Car Photo
@@ -371,9 +405,9 @@
                 return;
             }
 
-            // Test if image loads
-            const img = new Image();
-            img.onload = async function() {
+            showToast('Adding photo...', 'info');
+
+            try {
                 if (!appData.carPhotos[currentCategory]) {
                     appData.carPhotos[currentCategory] = [];
                 }
@@ -386,13 +420,31 @@
                 
                 input.value = '';
                 renderCarPhotos();
-                await saveData();
-                showToast(`✅ Photo added to ${currentCategory}! Visible to everyone.`, 'success');
-            };
-            img.onerror = function() {
-                showToast('❌ Invalid image URL. Please check the link.', 'error');
-            };
-            img.src = url;
+                
+                // Save to cloud
+                const response = await fetch(JSONBIN_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEY
+                    },
+                    body: JSON.stringify(appData)
+                });
+                
+                if (response.ok) {
+                    localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
+                    setSaveStatus('saved');
+                    showToast(`Photo added to ${currentCategory}!`, 'success');
+                } else {
+                    throw new Error('Save failed');
+                }
+            } catch (e) {
+                console.error('Error:', e);
+                // Save to localStorage as backup
+                localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
+                setSaveStatus('error');
+                showToast('Saved locally. Cloud sync failed.', 'error');
+            }
         }
 
         // Render Functions
