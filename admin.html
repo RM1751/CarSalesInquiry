@@ -26,27 +26,31 @@
         .save-indicator.saving { background: #dbeafe; color: #1e40af; }
         .save-indicator.error { background: #fee2e2; color: #991b1b; }
         
-        /* Toast Notifications */
-        #toastContainer { position: fixed; top: 80px; right: 20px; z-index: 9999; }
+        /* Toast Notifications - Fixed Position */
+        #toastContainer { 
+            position: fixed; 
+            top: 100px; 
+            right: 20px; 
+            z-index: 99999; 
+            width: 300px;
+        }
         .toast { 
-            padding: 12px 20px; 
-            border-radius: 8px; 
+            padding: 15px 20px; 
+            border-radius: 10px; 
             margin-bottom: 10px; 
             color: white; 
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 14px;
             display: flex; 
             align-items: center; 
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: slideIn 0.3s ease;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             min-width: 280px;
+            border-left: 5px solid rgba(255,255,255,0.5);
         }
-        .toast.success { background: #22c55e; }
-        .toast.error { background: #ef4444; }
-        .toast.info { background: #3b82f6; }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
-        .toast.hiding { animation: slideOut 0.3s ease forwards; }
+        .toast.success { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .toast.error { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .toast.info { background: linear-gradient(135deg, #3b82f6, #2563eb); }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen">
@@ -114,6 +118,11 @@
                     </select>
                 </div>
 
+                <!-- Success Message Area -->
+                <div id="sliderSuccessMsg" class="hidden mb-4 p-3 bg-green-100 border border-green-300 rounded-lg text-green-700 text-sm font-medium">
+                    <i class="fas fa-check-circle mr-2"></i> <span id="sliderSuccessText">Photo added to slider!</span>
+                </div>
+
                 <!-- Live Slider Preview -->
                 <div class="mb-4">
                     <p class="text-sm font-medium mb-2">Live Preview (Auto-sliding)</p>
@@ -171,6 +180,11 @@
                     <button onclick="addCarPhoto()" class="add-btn">
                         <i class="fas fa-plus"></i> Add
                     </button>
+                </div>
+
+                <!-- Success Message Area -->
+                <div id="carSuccessMsg" class="hidden mb-4 p-3 bg-green-100 border border-green-300 rounded-lg text-green-700 text-sm font-medium">
+                    <i class="fas fa-check-circle mr-2"></i> <span id="carSuccessText">Photo added!</span>
                 </div>
 
                 <!-- Current Category -->
@@ -241,8 +255,12 @@
 
         // Toast Notification System
         function showToast(message, type = 'success') {
+            console.log('Toast:', message, type);
             const container = document.getElementById('toastContainer');
-            if (!container) return;
+            if (!container) {
+                console.error('Toast container not found');
+                return;
+            }
             
             const toast = document.createElement('div');
             toast.className = 'toast ' + type;
@@ -260,11 +278,13 @@
             
             container.appendChild(toast);
             
-            // Remove after 3 seconds
+            // Remove after 4 seconds
             setTimeout(() => {
-                toast.classList.add('hiding');
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease';
                 setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            }, 4000);
             }, 3000);
         }
 
@@ -378,6 +398,11 @@
                     localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
                     setSaveStatus('saved');
                     showToast('Photo added! Visible to everyone.', 'success');
+                    // Show inline message
+                    const msg = document.getElementById('sliderSuccessMsg');
+                    document.getElementById('sliderSuccessText').textContent = 'Photo added to slider! Visible to everyone.';
+                    msg.classList.remove('hidden');
+                    setTimeout(() => msg.classList.add('hidden'), 3000);
                 } else {
                     throw new Error('Save failed');
                 }
@@ -387,6 +412,15 @@
                 localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
                 setSaveStatus('error');
                 showToast('Saved locally. Cloud sync failed.', 'error');
+                // Show inline error
+                const msg = document.getElementById('sliderSuccessMsg');
+                msg.className = 'mb-4 p-3 bg-red-100 border border-red-300 rounded-lg text-red-700 text-sm font-medium';
+                document.getElementById('sliderSuccessText').textContent = 'Saved locally. Cloud sync failed.';
+                msg.classList.remove('hidden');
+                setTimeout(() => {
+                    msg.classList.add('hidden');
+                    msg.className = 'hidden mb-4 p-3 bg-green-100 border border-green-300 rounded-lg text-green-700 text-sm font-medium';
+                }, 3000);
             }
         }
 
@@ -435,6 +469,11 @@
                     localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
                     setSaveStatus('saved');
                     showToast(`Photo added to ${currentCategory}!`, 'success');
+                    // Show inline message
+                    const msg = document.getElementById('carSuccessMsg');
+                    document.getElementById('carSuccessText').textContent = `Photo added to ${currentCategory}! Visible to everyone.`;
+                    msg.classList.remove('hidden');
+                    setTimeout(() => msg.classList.add('hidden'), 3000);
                 } else {
                     throw new Error('Save failed');
                 }
@@ -443,6 +482,15 @@
                 // Save to localStorage as backup
                 localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
                 setSaveStatus('error');
+                // Show inline error
+                const msg = document.getElementById('carSuccessMsg');
+                msg.className = 'mb-4 p-3 bg-red-100 border border-red-300 rounded-lg text-red-700 text-sm font-medium';
+                document.getElementById('carSuccessText').textContent = 'Saved locally. Cloud sync failed.';
+                msg.classList.remove('hidden');
+                setTimeout(() => {
+                    msg.classList.add('hidden');
+                    msg.className = 'hidden mb-4 p-3 bg-green-100 border border-green-300 rounded-lg text-green-700 text-sm font-medium';
+                }, 3000);
                 showToast('Saved locally. Cloud sync failed.', 'error');
             }
         }
