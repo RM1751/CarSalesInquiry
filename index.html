@@ -15,9 +15,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Dashboard Styles -->
+    <!-- Background Slider Styles -->
     <style>
-        /* Background Slider Styles - FULL SCREEN */
+        /* Full Screen Background Slider */
         .bg-slider {
             position: absolute;
             top: 0;
@@ -49,206 +49,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(30, 90, 231, 0.88) 0%, rgba(29, 93, 197, 0.88) 50%, rgba(31, 59, 99, 0.92) 100%);
+            background: linear-gradient(135deg, rgba(30, 90, 231, 0.9) 0%, rgba(29, 93, 197, 0.9) 50%, rgba(31, 59, 99, 0.95) 100%);
             z-index: 1;
         }
         
-        /* Mobile-specific slider adjustments */
+        /* Mobile slider adjustments */
         @media (max-width: 768px) {
             .bg-slider-image {
                 object-position: center center;
-            }
-            .hero-content {
-                position: relative;
-                z-index: 2;
-            }
-        }
-        
-        /* Dashboard Styles */
-        .dashboard-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-        .dashboard-card:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-        .upload-zone {
-            border: 2px dashed #cbd5e1;
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        @media (min-width: 768px) {
-            .upload-zone {
-                padding: 40px;
-            }
-        }
-        .upload-zone:hover, .upload-zone.dragover {
-            border-color: #e67e00;
-            background: #fff3e6;
-        }
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        @media (min-width: 640px) {
-            .photo-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 16px;
-            }
-        }
-        @media (min-width: 768px) {
-            .photo-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-        .photo-item {
-            position: relative;
-            aspect-ratio: 4/3;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-        }
-        .photo-item:hover img {
-            transform: scale(1.05);
-        }
-        .photo-delete {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            background: rgba(239, 68, 68, 0.95);
-            color: white;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-            font-size: 12px;
-            z-index: 10;
-        }
-        @media (min-width: 768px) {
-            .photo-delete {
-                opacity: 0;
-                width: 24px;
-                height: 24px;
-            }
-            .photo-item:hover .photo-delete {
-                opacity: 1;
-            }
-        }
-        .category-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: #e67e00 #e2e8f0;
-        }
-        .category-tabs::-webkit-scrollbar {
-            height: 6px;
-        }
-        .category-tabs::-webkit-scrollbar-track {
-            background: #e2e8f0;
-            border-radius: 3px;
-        }
-        .category-tabs::-webkit-scrollbar-thumb {
-            background: #e67e00;
-            border-radius: 3px;
-        }
-        .category-tab {
-            padding: 8px 16px;
-            border-radius: 9999px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            color: #64748b;
-            font-weight: 500;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-        @media (min-width: 768px) {
-            .category-tab {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
-        }
-        .category-tab:hover {
-            border-color: #e67e00;
-            color: #e67e00;
-        }
-        .category-tab.active {
-            background: linear-gradient(135deg, #e67e00 0%, #cd873b 100%);
-            border-color: #e67e00;
-            color: white;
-        }
-        .slider-preview {
-            position: relative;
-            height: 200px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #1e293b;
-        }
-        @media (min-width: 640px) {
-            .slider-preview {
-                height: 250px;
-            }
-        }
-        @media (min-width: 768px) {
-            .slider-preview {
-                height: 300px;
-            }
-        }
-        .slider-preview img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        .slider-preview img.active {
-            opacity: 1;
-        }
-        .admin-badge {
-            background: linear-gradient(135deg, #e67e00 0%, #cd873b 100%);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        /* Mobile dashboard improvements */
-        @media (max-width: 768px) {
-            .dashboard-header {
-                flex-direction: column;
-                gap: 16px;
-            }
-            .dashboard-title {
-                font-size: 24px;
-            }
-            .mobile-full-width {
-                width: 100%;
             }
         }
         
@@ -365,8 +173,8 @@
                     <a href="#refer-earn" class="text-slate-200 hover:text-maruti-400 transition-colors font-medium">Refer & Earn</a>
                     <a href="#calculator" class="text-slate-200 hover:text-maruti-400 transition-colors font-medium">EMI</a>
                     <a href="#testimonials" class="text-slate-200 hover:text-maruti-400 transition-colors font-medium">Reviews</a>
-                    <a href="#dashboard" class="text-slate-200 hover:text-maruti-400 transition-colors font-medium flex items-center gap-1">
-                        <i class="fas fa-cog text-sm"></i>Dashboard
+                    <a href="admin.html" class="text-slate-200 hover:text-maruti-400 transition-colors font-medium flex items-center gap-1">
+                        <i class="fas fa-cog text-sm"></i>Admin
                     </a>
                     <a href="#contact" class="gradient-maruti text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all">
                         <i class="fab fa-whatsapp mr-2"></i>Chat Now
@@ -388,7 +196,7 @@
                 <a href="#refer-earn" class="block text-slate-200 hover:text-maruti-400 py-2">Refer & Earn</a>
                 <a href="#calculator" class="block text-slate-200 hover:text-maruti-400 py-2">EMI Calculator</a>
                 <a href="#testimonials" class="block text-slate-200 hover:text-maruti-400 py-2">Reviews</a>
-                <a href="#dashboard" class="block text-slate-200 hover:text-maruti-400 py-2"><i class="fas fa-cog mr-2"></i>Dashboard</a>
+                <a href="admin.html" class="block text-slate-200 hover:text-maruti-400 py-2"><i class="fas fa-cog mr-2"></i>Admin</a>
                 <a href="#contact" class="block gradient-maruti text-white px-4 py-3 rounded-lg text-center font-semibold">
                     <i class="fab fa-whatsapp mr-2"></i>Chat on WhatsApp
                 </a>
@@ -1515,219 +1323,6 @@
         </div>
     </section>
 
-    <!-- Admin Dashboard Section -->
-    <section id="dashboard" class="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Device Notice Banner -->
-            <div class="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
-                <i class="fas fa-mobile-alt text-amber-500 text-xl mt-0.5"></i>
-                <div class="flex-1">
-                    <p class="text-amber-800 font-medium text-sm md:text-base">📱 Important: Photos are saved on this device only</p>
-                    <p class="text-amber-700 text-xs md:text-sm mt-1">Photos you upload here are stored in your browser. To see these photos on mobile, you'll need to upload them on your mobile device too. This keeps your data private and fast!</p>
-                </div>
-            </div>
-
-            <!-- Header -->
-            <div class="dashboard-header flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-10 gap-4">
-                <div>
-                    <div class="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
-                        <span class="admin-badge">ADMIN</span>
-                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800">Dashboard</h2>
-                    </div>
-                    <p class="text-slate-600 text-sm md:text-base">Manage your client photos and car category images</p>
-                </div>
-                <button onclick="saveAllData()" class="touch-button mobile-full-width gradient-maruti text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                    <i class="fas fa-save"></i>
-                    Save Changes
-                </button>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
-                <!-- Client Photos Slider Management -->
-                <div class="dashboard-card p-4 md:p-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-images text-white text-lg md:text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg md:text-xl font-bold text-slate-800">Client Delivery Photos</h3>
-                                <p class="text-xs md:text-sm text-slate-500">Background slider images</p>
-                            </div>
-                        </div>
-                        <label class="touch-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer transition-all flex items-center justify-center gap-2 text-sm md:text-base">
-                            <i class="fas fa-plus"></i>
-                            <span>Add Photo</span>
-                            <input type="file" accept="image/*" class="hidden" onchange="handleClientPhotoUpload(event)">
-                        </label>
-                    </div>
-
-                    <!-- Slider Preview -->
-                    <div class="mb-4 md:mb-6">
-                        <p class="text-sm font-medium text-slate-700 mb-2 md:mb-3">Live Preview (Background Slider)</p>
-                        <div class="slider-preview" id="sliderPreview">
-                            <div id="sliderPreviewImages"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/70 to-transparent">
-                                <p class="text-white text-xs md:text-sm font-medium">Showing <span id="sliderCount">0</span> photos</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Client Photos Grid -->
-                    <div class="mb-4">
-                        <p class="text-sm font-medium text-slate-700 mb-2 md:mb-3">Manage Photos</p>
-                        <div class="photo-grid" id="clientPhotosGrid">
-                            <div class="col-span-full text-center py-8 md:py-12 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200" id="emptyClientPhotos">
-                                <i class="fas fa-camera text-slate-300 text-3xl md:text-4xl mb-3"></i>
-                                <p class="text-slate-400 text-xs md:text-sm">No photos yet. Upload photos with your clients!</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-4 border-t border-slate-100 gap-3">
-                        <div class="flex items-center gap-2">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" id="enableSlider" checked class="w-5 h-5 text-maruti-500 rounded focus:ring-maruti-500" onchange="toggleSlider()">
-                                <span class="text-sm text-slate-700">Enable slider</span>
-                            </label>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm text-slate-500">Speed:</span>
-                            <select id="sliderSpeed" class="text-sm border border-slate-200 rounded-lg px-2 py-1 focus:border-maruti-500 focus:ring-1 focus:ring-maruti-500" onchange="updateSliderSpeed()">
-                                <option value="3000">3 sec</option>
-                                <option value="5000" selected>5 sec</option>
-                                <option value="8000">8 sec</option>
-                                <option value="10000">10 sec</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Save Button -->
-                    <div class="md:hidden mt-4">
-                        <button onclick="saveAllData()" class="w-full gradient-maruti text-white py-3 rounded-xl font-semibold">
-                            <i class="fas fa-save mr-2"></i>Save Changes
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Car Category Photos Management -->
-                <div class="dashboard-card p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-gradient-to-br from-maruti-500 to-orange-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-car text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-800">Car Category Photos</h3>
-                                <p class="text-sm text-slate-500">Upload photos by car model</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Category Tabs -->
-                    <div class="category-tabs mb-6" id="categoryTabs">
-                        <button class="category-tab active" data-category="Alto">Alto</button>
-                        <button class="category-tab" data-category="S-Presso">S-Presso</button>
-                        <button class="category-tab" data-category="WagonR">WagonR</button>
-                        <button class="category-tab" data-category="Celerio">Celerio</button>
-                        <button class="category-tab" data-category="Swift">Swift</button>
-                        <button class="category-tab" data-category="Dzire">Dzire</button>
-                        <button class="category-tab" data-category="BREZZA">BREZZA</button>
-                        <button class="category-tab" data-category="Ertiga">Ertiga</button>
-                        <button class="category-tab" data-category="Eeco">Eeco</button>
-                    </div>
-
-                    <!-- Current Category Display -->
-                    <div class="mb-4 p-4 bg-gradient-to-r from-maruti-50 to-orange-50 rounded-xl">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm text-slate-500">Selected Category</p>
-                                <h4 class="text-2xl font-bold text-maruti-600" id="currentCategory">Alto</h4>
-                            </div>
-                            <label class="gradient-maruti text-white px-4 py-2 rounded-lg cursor-pointer transition-all hover:shadow-lg flex items-center gap-2">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span>Upload</span>
-                                <input type="file" accept="image/*" class="hidden" onchange="handleCarPhotoUpload(event)">
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Upload Zone -->
-                    <div class="upload-zone mb-6" id="carUploadZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
-                        <div class="w-16 h-16 mx-auto bg-maruti-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-cloud-upload-alt text-maruti-500 text-2xl"></i>
-                        </div>
-                        <p class="text-slate-600 font-medium mb-2">Drop photos here or click to upload</p>
-                        <p class="text-slate-400 text-sm">JPG, PNG up to 5MB</p>
-                        <input type="file" accept="image/*" multiple class="hidden" id="carFileInput" onchange="handleCarPhotoUpload(event)">
-                    </div>
-
-                    <!-- Car Photos Grid -->
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <p class="text-sm font-medium text-slate-700">
-                                <span id="currentCategoryTitle">Alto</span> Photos 
-                                <span class="text-slate-400" id="carPhotoCount">(0)</span>
-                            </p>
-                            <button onclick="clearCategoryPhotos()" class="text-red-500 text-sm hover:text-red-600 flex items-center gap-1">
-                                <i class="fas fa-trash-alt"></i> Clear All
-                            </button>
-                        </div>
-                        <div class="photo-grid" id="carPhotosGrid">
-                            <div class="col-span-full text-center py-12 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200" id="emptyCarPhotos">
-                                <i class="fas fa-car text-slate-300 text-4xl mb-3"></i>
-                                <p class="text-slate-400 text-sm">No photos for this category yet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Save Button -->
-                    <div class="md:hidden mt-4">
-                        <button onclick="saveAllData()" class="w-full gradient-maruti text-white py-3 rounded-xl font-semibold">
-                            <i class="fas fa-save mr-2"></i>Save Changes
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instructions Card -->
-            <div class="mt-8 dashboard-card p-6 bg-gradient-to-r from-blue-50 to-indigo-50">
-                <div class="flex items-start gap-4">
-                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-lightbulb text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold text-slate-800 mb-2">How to Use Dashboard</h4>
-                        <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-600">
-                            <div>
-                                <p class="font-medium text-slate-700 mb-1"><i class="fas fa-images text-blue-500 mr-2"></i>Client Delivery Photos</p>
-                                <ul class="space-y-1 ml-6">
-                                    <li>• Upload photos taken with clients during car delivery</li>
-                                    <li>• These will display as a background slideshow on your website</li>
-                                    <li>• Adjust slider speed and enable/disable as needed</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <p class="font-medium text-slate-700 mb-1"><i class="fas fa-car text-maruti-500 mr-2"></i>Car Category Photos</p>
-                                <ul class="space-y-1 ml-6">
-                                    <li>• Select a car model from the tabs above</li>
-                                    <li>• Upload actual photos of each car model</li>
-                                    <li>• These photos will appear on your car cards</li>
-                                    <li>• Drag and drop or click to upload</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="mt-4 p-4 bg-white rounded-xl border border-blue-100">
-                            <p class="text-sm text-slate-600">
-                                <i class="fas fa-info-circle text-blue-500 mr-2"></i>
-                                <strong>Note:</strong> All changes are saved to your browser's local storage. Click "Save Changes" to persist data. Photos are stored as base64, so keep file sizes reasonable for best performance.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-300 py-12">
@@ -2003,202 +1598,45 @@
             if (e.target === this) closeSuccessModal();
         });
 
-        // ==================== DASHBOARD FUNCTIONALITY ====================
+        // ==================== BACKGROUND SLIDER & CAR PHOTOS ====================
         
-        // Data Storage
-        let dashboardData = {
-            clientPhotos: [],
+        let sliderInterval = null;
+        let appData = {
+            sliderPhotos: [],
             carPhotos: {},
             sliderEnabled: true,
             sliderSpeed: 5000
         };
-        
-        let currentCategory = 'Alto';
-        let sliderInterval = null;
-        let previewInterval = null;
 
-        // Initialize Dashboard
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadDashboardData();
-            initCategoryTabs();
-            initUploadZone();
-            renderClientPhotos();
-            renderCarPhotos();
+            loadData();
             initBackgroundSlider();
-            
-            // Handle mobile viewport height for full-screen slider
-            handleMobileViewport();
-            window.addEventListener('resize', handleMobileViewport);
+            applyCarPhotos();
         });
 
-        // Handle mobile viewport for full-screen experience
-        function handleMobileViewport() {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-
-        // Load Data from localStorage
-        function loadDashboardData() {
+        // Load data from localStorage (set by admin.html)
+        function loadData() {
             try {
-                const saved = localStorage.getItem('rahulCarSalesDashboard');
+                const saved = localStorage.getItem('rahulCarSalesData');
                 if (saved) {
-                    dashboardData = JSON.parse(saved);
-                    document.getElementById('enableSlider').checked = dashboardData.sliderEnabled !== false;
-                    document.getElementById('sliderSpeed').value = dashboardData.sliderSpeed || 5000;
+                    appData = JSON.parse(saved);
                 }
             } catch (e) {
-                console.log('No saved data found');
+                console.log('No saved data');
             }
-        }
-
-        // Save Data to localStorage
-        function saveAllData() {
-            try {
-                localStorage.setItem('rahulCarSalesDashboard', JSON.stringify(dashboardData));
-                
-                // Show success notification on all save buttons
-                const buttons = document.querySelectorAll('button[onclick="saveAllData()"]');
-                buttons.forEach(btn => {
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
-                    btn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.background = '';
-                    }, 2000);
-                });
-            } catch (e) {
-                alert('Error saving data. Storage may be full.');
-            }
-        }
-
-        // ==================== CLIENT PHOTOS SLIDER ====================
-
-        function handleClientPhotoUpload(event) {
-            const files = event.target.files;
-            if (!files.length) return;
-
-            Array.from(files).forEach(file => {
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('File too large: ' + file.name + '. Max size is 5MB.');
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    dashboardData.clientPhotos.push({
-                        id: Date.now() + Math.random(),
-                        src: e.target.result,
-                        name: file.name,
-                        date: new Date().toISOString()
-                    });
-                    renderClientPhotos();
-                    saveAllData();
-                };
-                reader.readAsDataURL(file);
-            });
-            
-            event.target.value = '';
-        }
-
-        function renderClientPhotos() {
-            const grid = document.getElementById('clientPhotosGrid');
-            const emptyState = document.getElementById('emptyClientPhotos');
-            const sliderCount = document.getElementById('sliderCount');
-            
-            sliderCount.textContent = dashboardData.clientPhotos.length;
-
-            if (dashboardData.clientPhotos.length === 0) {
-                grid.innerHTML = '';
-                grid.appendChild(emptyState);
-                emptyState.style.display = 'block';
-                updateSliderPreview();
-                return;
-            }
-
-            emptyState.style.display = 'none';
-            grid.innerHTML = dashboardData.clientPhotos.map(photo => `
-                <div class="photo-item">
-                    <img src="${photo.src}" alt="${photo.name}">
-                    <button class="photo-delete" onclick="deleteClientPhoto(${photo.id})" title="Remove photo">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `).join('');
-
-            updateSliderPreview();
-        }
-
-        function deleteClientPhoto(id) {
-            if (confirm('Remove this photo?')) {
-                dashboardData.clientPhotos = dashboardData.clientPhotos.filter(p => p.id !== id);
-                renderClientPhotos();
-                saveAllData();
-            }
-        }
-
-        function updateSliderPreview() {
-            const previewContainer = document.getElementById('sliderPreviewImages');
-            
-            if (dashboardData.clientPhotos.length === 0) {
-                previewContainer.innerHTML = `
-                    <div class="absolute inset-0 flex items-center justify-center text-white/50">
-                        <div class="text-center">
-                            <i class="fas fa-images text-4xl mb-2"></i>
-                            <p>No photos to preview</p>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-
-            previewContainer.innerHTML = dashboardData.clientPhotos.map((photo, index) => `
-                <img src="${photo.src}" class="${index === 0 ? 'active' : ''}" data-index="${index}">
-            `).join('');
-
-            // Start preview animation
-            startPreviewAnimation();
-        }
-
-        function startPreviewAnimation() {
-            if (previewInterval) clearInterval(previewInterval);
-            if (dashboardData.clientPhotos.length <= 1) return;
-
-            let currentIndex = 0;
-            const speed = parseInt(document.getElementById('sliderSpeed').value);
-
-            previewInterval = setInterval(() => {
-                const images = document.querySelectorAll('#sliderPreviewImages img');
-                images.forEach(img => img.classList.remove('active'));
-                
-                currentIndex = (currentIndex + 1) % dashboardData.clientPhotos.length;
-                if (images[currentIndex]) {
-                    images[currentIndex].classList.add('active');
-                }
-            }, speed);
-        }
-
-        function toggleSlider() {
-            dashboardData.sliderEnabled = document.getElementById('enableSlider').checked;
-            initBackgroundSlider();
-            saveAllData();
-        }
-
-        function updateSliderSpeed() {
-            dashboardData.sliderSpeed = parseInt(document.getElementById('sliderSpeed').value);
-            startPreviewAnimation();
-            initBackgroundSlider();
-            saveAllData();
         }
 
         // ==================== BACKGROUND SLIDER ON HERO ====================
-
         function initBackgroundSlider() {
             // Remove existing slider if any
             const existingSlider = document.getElementById('bgSlider');
             if (existingSlider) existingSlider.remove();
 
-            if (!dashboardData.sliderEnabled || dashboardData.clientPhotos.length === 0) return;
+            // Check if slider should be enabled and has photos
+            if (appData.sliderEnabled === false || !appData.sliderPhotos || appData.sliderPhotos.length === 0) {
+                return;
+            }
 
             // Create background slider
             const heroSection = document.getElementById('home');
@@ -2206,12 +1644,9 @@
             slider.id = 'bgSlider';
             slider.className = 'bg-slider';
             
-            // Use higher quality images for mobile with proper sizing
-            const isMobile = window.innerWidth < 768;
-            
             slider.innerHTML = `
-                ${dashboardData.clientPhotos.map((photo, index) => `
-                    <img src="${photo.src}" 
+                ${appData.sliderPhotos.map((photo, index) => `
+                    <img src="${photo.url}" 
                          class="bg-slider-image ${index === 0 ? 'active' : ''}" 
                          data-index="${index}"
                          loading="${index === 0 ? 'eager' : 'lazy'}"
@@ -2227,7 +1662,7 @@
             if (sliderInterval) clearInterval(sliderInterval);
             
             let currentSlide = 0;
-            const speed = dashboardData.sliderSpeed || 5000;
+            const speed = appData.sliderSpeed || 5000;
 
             sliderInterval = setInterval(() => {
                 const slides = document.querySelectorAll('#bgSlider .bg-slider-image');
@@ -2240,170 +1675,34 @@
                     slides[currentSlide].classList.add('active');
                 }
             }, speed);
+        }
+
+        // ==================== APPLY CAR PHOTOS ====================
+        function applyCarPhotos() {
+            if (!appData.carPhotos) return;
             
-            // Preload next image for smoother mobile experience
-            preloadNextImage(1);
-        }
-        
-        // Preload images for smoother slider
-        function preloadNextImage(nextIndex) {
-            if (dashboardData.clientPhotos.length <= 1) return;
-            const nextPhoto = dashboardData.clientPhotos[nextIndex % dashboardData.clientPhotos.length];
-            if (nextPhoto && nextPhoto.src) {
-                const img = new Image();
-                img.src = nextPhoto.src;
-            }
-        }
-
-        // ==================== CAR CATEGORY PHOTOS ====================
-
-        function initCategoryTabs() {
-            const tabs = document.querySelectorAll('.category-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    currentCategory = this.dataset.category;
-                    document.getElementById('currentCategory').textContent = currentCategory;
-                    document.getElementById('currentCategoryTitle').textContent = currentCategory;
-                    renderCarPhotos();
-                });
-            });
-        }
-
-        function initUploadZone() {
-            const zone = document.getElementById('carUploadZone');
-            
-            zone.addEventListener('click', function(e) {
-                if (e.target === this || e.target.closest('.upload-zone')) {
-                    document.getElementById('carFileInput').click();
+            Object.keys(appData.carPhotos).forEach(category => {
+                const photos = appData.carPhotos[category];
+                if (photos && photos.length > 0) {
+                    updateCarCardImage(category, photos[0].url);
                 }
             });
         }
 
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.currentTarget.classList.add('dragover');
-        }
-
-        function handleDragLeave(e) {
-            e.currentTarget.classList.remove('dragover');
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('dragover');
-            
-            const files = e.dataTransfer.files;
-            processCarPhotos(files);
-        }
-
-        function handleCarPhotoUpload(event) {
-            const files = event.target.files;
-            processCarPhotos(files);
-            event.target.value = '';
-        }
-
-        function processCarPhotos(files) {
-            if (!files.length) return;
-
-            if (!dashboardData.carPhotos[currentCategory]) {
-                dashboardData.carPhotos[currentCategory] = [];
-            }
-
-            Array.from(files).forEach(file => {
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('File too large: ' + file.name + '. Max size is 5MB.');
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    dashboardData.carPhotos[currentCategory].push({
-                        id: Date.now() + Math.random(),
-                        src: e.target.result,
-                        name: file.name,
-                        category: currentCategory,
-                        date: new Date().toISOString()
-                    });
-                    renderCarPhotos();
-                    saveAllData();
-                    updateCarCardImage(currentCategory, e.target.result);
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-
-        function renderCarPhotos() {
-            const grid = document.getElementById('carPhotosGrid');
-            const emptyState = document.getElementById('emptyCarPhotos');
-            const photos = dashboardData.carPhotos[currentCategory] || [];
-
-            document.getElementById('carPhotoCount').textContent = `(${photos.length})`;
-
-            if (photos.length === 0) {
-                grid.innerHTML = '';
-                grid.appendChild(emptyState);
-                emptyState.style.display = 'block';
-                return;
-            }
-
-            emptyState.style.display = 'none';
-            grid.innerHTML = photos.map(photo => `
-                <div class="photo-item">
-                    <img src="${photo.src}" alt="${photo.name}">
-                    <button class="photo-delete" onclick="deleteCarPhoto(${photo.id})" title="Remove photo">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function deleteCarPhoto(id) {
-            if (confirm('Remove this photo?')) {
-                if (dashboardData.carPhotos[currentCategory]) {
-                    dashboardData.carPhotos[currentCategory] = dashboardData.carPhotos[currentCategory].filter(p => p.id !== id);
-                    renderCarPhotos();
-                    saveAllData();
-                }
-            }
-        }
-
-        function clearCategoryPhotos() {
-            if (confirm(`Clear all photos for ${currentCategory}?`)) {
-                dashboardData.carPhotos[currentCategory] = [];
-                renderCarPhotos();
-                saveAllData();
-            }
-        }
-
-        // Update car card image when new photo is uploaded
-        function updateCarCardImage(category, imageSrc) {
-            // Find the car card for this category and update its image
+        // Update car card image
+        function updateCarCardImage(category, imageUrl) {
             const carCards = document.querySelectorAll('#cars .card-hover');
             carCards.forEach(card => {
                 const title = card.querySelector('h3');
                 if (title && title.textContent.toLowerCase().includes(category.toLowerCase())) {
                     const imgContainer = card.querySelector('.h-48');
                     if (imgContainer) {
-                        imgContainer.innerHTML = `<img src="${imageSrc}" class="w-full h-full object-cover" alt="${category}">`;
-                        imgContainer.className = 'h-48 overflow-hidden';
+                        imgContainer.innerHTML = `<img src="${imageUrl}" class="w-full h-full object-cover" alt="${category}" onerror="this.style.display='none'">`;
+                        imgContainer.className = 'h-48 overflow-hidden bg-gray-100';
                     }
                 }
             });
         }
-
-        // Apply saved car photos on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                Object.keys(dashboardData.carPhotos).forEach(category => {
-                    const photos = dashboardData.carPhotos[category];
-                    if (photos && photos.length > 0) {
-                        updateCarCardImage(category, photos[0].src);
-                    }
-                });
-            }, 500);
-        });
     </script>
 </body>
 </html>
