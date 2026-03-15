@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Admin Dashboard - Rahul Car Sales</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +18,7 @@
         .photo-item { position: relative; aspect-ratio: 16/10; border-radius: 8px; overflow: hidden; }
         .photo-item img { width: 100%; height: 100%; object-fit: cover; }
         .photo-delete { position: absolute; top: 4px; right: 4px; background: rgba(239,68,68,0.95); color: white; border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; }
-        .category-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .category-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
         .category-tab { padding: 8px 16px; border-radius: 9999px; border: 2px solid #e2e8f0; background: white; color: #64748b; font-weight: 500; cursor: pointer; white-space: nowrap; }
         .category-tab.active { background: linear-gradient(135deg, #e67e00 0%, #cd873b 100%); border-color: #e67e00; color: white; }
         .url-input { width: 100%; padding: 10px 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; }
@@ -24,12 +27,11 @@
         .save-indicator { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
         .save-indicator.saved { background: #dcfce7; color: #166534; }
         .save-indicator.saving { background: #dbeafe; color: #1e40af; }
-        .save-indicator.error { background: #fee2e2; color: #991b1b; }
-        .success-msg { background: #dcfce7; border: 1px solid #86efac; color: #166534; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+        .success-msg { background: #dcfce7; border: 1px solid #86efac; color: #166534; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; font-weight: 500; }
+        .error-msg { background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; font-weight: 500; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen">
-    <!-- Header -->
     <header class="gradient-maruti text-white py-4 px-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -63,16 +65,14 @@
                         </div>
                         <div>
                             <h2 class="text-lg font-bold">Homepage Slider</h2>
-                            <p class="text-xs text-slate-500">Photos visible to everyone</p>
+                            <p class="text-xs text-slate-500">Background photos</p>
                         </div>
                     </div>
                     <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Auto-save</span>
                 </div>
 
-                <!-- Success Message -->
-                <div id="sliderSuccess" class="success-msg hidden">
-                    <i class="fas fa-check-circle mr-2"></i> Photo added to slider!
-                </div>
+                <!-- Messages -->
+                <div id="sliderMsg" class="hidden mb-3"></div>
 
                 <!-- Add URL Input -->
                 <div class="flex gap-2 mb-4">
@@ -85,10 +85,10 @@
                 <!-- Settings -->
                 <div class="flex items-center justify-between mb-4 p-3 bg-slate-50 rounded-lg">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="enableSlider" checked class="w-4 h-4" onchange="saveData()">
+                        <input type="checkbox" id="enableSlider" checked class="w-4 h-4" onchange="updateSettings()">
                         <span class="text-sm">Enable slider</span>
                     </label>
-                    <select id="sliderSpeed" class="text-sm border rounded px-2 py-1" onchange="saveData()">
+                    <select id="sliderSpeed" class="text-sm border rounded px-2 py-1" onchange="updateSettings()">
                         <option value="3000">3 sec</option>
                         <option value="5000" selected>5 sec</option>
                         <option value="8000">8 sec</option>
@@ -122,23 +122,21 @@
                     <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Auto-save</span>
                 </div>
 
-                <!-- Success Message -->
-                <div id="carSuccess" class="success-msg hidden">
-                    <i class="fas fa-check-circle mr-2"></i> <span id="carSuccessText">Photo added!</span>
-                </div>
+                <!-- Messages -->
+                <div id="carMsg" class="hidden mb-3"></div>
 
                 <!-- Category Tabs -->
-                <div class="category-tabs mb-4">
-                    <button class="category-tab active" onclick="setCategory('Alto', this)">Alto</button>
-                    <button class="category-tab" onclick="setCategory('S-Presso', this)">S-Presso</button>
-                    <button class="category-tab" onclick="setCategory('WagonR', this)">WagonR</button>
-                    <button class="category-tab" onclick="setCategory('Celerio', this)">Celerio</button>
-                    <button class="category-tab" onclick="setCategory('Swift', this)">Swift</button>
-                    <button class="category-tab" onclick="setCategory('Dzire', this)">Dzire</button>
-                    <button class="category-tab" onclick="setCategory('BREZZA', this)">Brezza</button>
-                    <button class="category-tab" onclick="setCategory('Victoris', this)">Victoris</button>
-                    <button class="category-tab" onclick="setCategory('Ertiga', this)">Ertiga</button>
-                    <button class="category-tab" onclick="setCategory('Eeco', this)">Eeco</button>
+                <div class="category-tabs mb-4" id="carTabs">
+                    <button class="category-tab active" data-category="Alto">Alto</button>
+                    <button class="category-tab" data-category="S-Presso">S-Presso</button>
+                    <button class="category-tab" data-category="WagonR">WagonR</button>
+                    <button class="category-tab" data-category="Celerio">Celerio</button>
+                    <button class="category-tab" data-category="Swift">Swift</button>
+                    <button class="category-tab" data-category="Dzire">Dzire</button>
+                    <button class="category-tab" data-category="BREZZA">Brezza</button>
+                    <button class="category-tab" data-category="Victoris">Victoris</button>
+                    <button class="category-tab" data-category="Ertiga">Ertiga</button>
+                    <button class="category-tab" data-category="Eeco">Eeco</button>
                 </div>
 
                 <!-- Add URL Input -->
@@ -152,7 +150,7 @@
                 <!-- Current Category -->
                 <div class="mb-4 p-3 bg-orange-50 rounded-lg">
                     <span class="text-sm text-slate-600">Selected: </span>
-                    <span class="font-bold text-orange-600" id="currentCategory">Alto</span>
+                    <span class="font-bold text-orange-600" id="currentCategoryDisplay">Alto</span>
                     <span class="text-sm text-slate-500 ml-2">(<span id="carPhotoCount">0</span> photos)</span>
                 </div>
 
@@ -179,24 +177,42 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Admin page loaded');
             loadData();
+            initCategoryTabs();
         });
 
         function loadData() {
-            const saved = localStorage.getItem('rahulCarSalesData');
-            if (saved) {
-                appData = JSON.parse(saved);
+            try {
+                const saved = localStorage.getItem('rahulCarSalesData');
+                if (saved) {
+                    appData = JSON.parse(saved);
+                    console.log('Loaded data:', appData);
+                }
+            } catch (e) {
+                console.error('Error loading data:', e);
             }
+            
             document.getElementById('enableSlider').checked = appData.sliderEnabled !== false;
             document.getElementById('sliderSpeed').value = appData.sliderSpeed || 5000;
             renderAll();
-            updateSaveStatus('saved');
         }
 
         function saveData() {
+            try {
+                localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
+                console.log('Saved data');
+                updateSaveStatus('saved');
+            } catch (e) {
+                console.error('Error saving:', e);
+                updateSaveStatus('error');
+            }
+        }
+
+        function updateSettings() {
             appData.sliderEnabled = document.getElementById('enableSlider').checked;
             appData.sliderSpeed = parseInt(document.getElementById('sliderSpeed').value);
-            localStorage.setItem('rahulCarSalesData', JSON.stringify(appData));
+            saveData();
         }
 
         function updateSaveStatus(status) {
@@ -207,47 +223,91 @@
             }
         }
 
-        function showSuccess(elementId, message) {
+        function showMessage(elementId, message, type) {
             const el = document.getElementById(elementId);
-            if (message) el.innerHTML = '<i class="fas fa-check-circle mr-2"></i> ' + message;
+            el.className = type === 'success' ? 'success-msg' : 'error-msg';
+            el.innerHTML = '<i class="fas fa-' + (type === 'success' ? 'check-circle' : 'exclamation-circle') + ' mr-2"></i> ' + message;
             el.classList.remove('hidden');
-            setTimeout(() => el.classList.add('hidden'), 3000);
+            
+            // Auto hide after 3 seconds
+            setTimeout(function() {
+                el.classList.add('hidden');
+            }, 3000);
+        }
+
+        function initCategoryTabs() {
+            const tabs = document.querySelectorAll('#carTabs .category-tab');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    console.log('Selected category:', category);
+                    
+                    // Update active state
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update current category
+                    currentCategory = category;
+                    document.getElementById('currentCategoryDisplay').textContent = category;
+                    
+                    // Re-render photos
+                    renderCarPhotos();
+                });
+            });
         }
 
         function addSliderPhoto() {
             const input = document.getElementById('sliderUrlInput');
             const url = input.value.trim();
             
-            if (!url || !url.startsWith('http')) {
-                alert('Please enter a valid URL');
+            if (!url) {
+                showMessage('sliderMsg', 'Please enter a URL', 'error');
+                return;
+            }
+            
+            if (!url.startsWith('http')) {
+                showMessage('sliderMsg', 'URL must start with http', 'error');
                 return;
             }
 
+            console.log('Adding slider photo:', url);
             appData.sliderPhotos.push({ id: Date.now(), url: url });
             input.value = '';
             renderSliderPhotos();
             saveData();
-            showSuccess('sliderSuccess', 'Photo added to slider!');
+            showMessage('sliderMsg', 'Photo added to slider!', 'success');
         }
 
         function addCarPhoto() {
             const input = document.getElementById('carUrlInput');
             const url = input.value.trim();
             
-            if (!url || !url.startsWith('http')) {
-                alert('Please enter a valid URL');
+            if (!url) {
+                showMessage('carMsg', 'Please enter a URL', 'error');
+                return;
+            }
+            
+            if (!url.startsWith('http')) {
+                showMessage('carMsg', 'URL must start with http', 'error');
                 return;
             }
 
+            console.log('Adding car photo for', currentCategory, ':', url);
+            
             if (!appData.carPhotos[currentCategory]) {
                 appData.carPhotos[currentCategory] = [];
             }
 
-            appData.carPhotos[currentCategory].push({ id: Date.now(), url: url, category: currentCategory });
+            appData.carPhotos[currentCategory].push({
+                id: Date.now(),
+                url: url,
+                category: currentCategory
+            });
+            
             input.value = '';
             renderCarPhotos();
             saveData();
-            showSuccess('carSuccess', 'Photo added to ' + currentCategory + '!');
+            showMessage('carMsg', 'Photo added to ' + currentCategory + '!', 'success');
         }
 
         function renderAll() {
@@ -270,14 +330,14 @@
             }
 
             empty.style.display = 'none';
-            grid.innerHTML = photos.map(photo => `
-                <div class="photo-item">
-                    <img src="${photo.url}" alt="Photo">
-                    <button class="photo-delete" onclick="deleteSliderPhoto(${photo.id})">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `).join('');
+            grid.innerHTML = photos.map(function(photo) {
+                return '<div class="photo-item">' +
+                    '<img src="' + photo.url + '" alt="Photo">' +
+                    '<button class="photo-delete" onclick="deleteSliderPhoto(' + photo.id + ')">' +
+                        '<i class="fas fa-times"></i>' +
+                    '</button>' +
+                '</div>';
+            }).join('');
         }
 
         function renderCarPhotos() {
@@ -295,19 +355,19 @@
             }
 
             empty.style.display = 'none';
-            grid.innerHTML = photos.map(photo => `
-                <div class="photo-item">
-                    <img src="${photo.url}" alt="${currentCategory}">
-                    <button class="photo-delete" onclick="deleteCarPhoto(${photo.id})">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `).join('');
+            grid.innerHTML = photos.map(function(photo) {
+                return '<div class="photo-item">' +
+                    '<img src="' + photo.url + '" alt="' + currentCategory + '">' +
+                    '<button class="photo-delete" onclick="deleteCarPhoto(' + photo.id + ')">' +
+                        '<i class="fas fa-times"></i>' +
+                    '</button>' +
+                '</div>';
+            }).join('');
         }
 
         function deleteSliderPhoto(id) {
             if (!confirm('Delete this photo?')) return;
-            appData.sliderPhotos = appData.sliderPhotos.filter(p => p.id !== id);
+            appData.sliderPhotos = appData.sliderPhotos.filter(function(p) { return p.id !== id; });
             renderSliderPhotos();
             saveData();
         }
@@ -315,18 +375,10 @@
         function deleteCarPhoto(id) {
             if (!confirm('Delete this photo?')) return;
             if (appData.carPhotos[currentCategory]) {
-                appData.carPhotos[currentCategory] = appData.carPhotos[currentCategory].filter(p => p.id !== id);
+                appData.carPhotos[currentCategory] = appData.carPhotos[currentCategory].filter(function(p) { return p.id !== id; });
                 renderCarPhotos();
                 saveData();
             }
-        }
-
-        function setCategory(category, btn) {
-            currentCategory = category;
-            document.getElementById('currentCategory').textContent = category;
-            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-            btn.classList.add('active');
-            renderCarPhotos();
         }
 
         // Enter key support
